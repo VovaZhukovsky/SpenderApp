@@ -3,8 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using Spender.DAL;
 using Spender.DAL.Interfaces;
 using Spender.DAL.Repositories;
-using Spender.ViewModel;
 using Spender.DAL.Configs;
+using Spender.ViewModel;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +15,7 @@ Log.Logger = new LoggerConfiguration()
 
 try
 {
-    Log.Information("Service started");
+    Log.Information("Application started");
     builder.Services.AddSingleton(Log.Logger);
     builder.Services.AddScoped<MapsterConfig>();
     builder.Services.AddScoped<IRepository<ClientViewModel>, ClientRepository>();   

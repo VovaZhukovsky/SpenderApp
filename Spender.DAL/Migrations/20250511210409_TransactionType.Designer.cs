@@ -12,8 +12,8 @@ using Spender.DAL;
 namespace Spender.DAL.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20250511144347_transactiontype")]
-    partial class transactiontype
+    [Migration("20250511210409_TransactionType")]
+    partial class TransactionType
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -38,7 +38,7 @@ namespace Spender.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("transactionType")
+                    b.Property<int>("TransactionType")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");

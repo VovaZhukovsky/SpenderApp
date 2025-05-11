@@ -35,7 +35,7 @@ namespace Spender.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("transactionType")
+                    b.Property<int>("TransactionType")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");

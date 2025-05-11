@@ -5,25 +5,24 @@
 namespace Spender.DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class transactiontype : Migration
+    public partial class TransactionType : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<int>(
+            migrationBuilder.RenameColumn(
                 name: "transactionType",
                 table: "Categories",
-                type: "integer",
-                nullable: false,
-                defaultValue: 0);
+                newName: "TransactionType");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
-                name: "transactionType",
-                table: "Categories");
+            migrationBuilder.RenameColumn(
+                name: "TransactionType",
+                table: "Categories",
+                newName: "transactionType");
         }
     }
 }
