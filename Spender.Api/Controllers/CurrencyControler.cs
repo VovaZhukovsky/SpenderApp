@@ -26,12 +26,14 @@ namespace Spender.Api.Controllers
             _repo.Save();
             return StatusCode(200,currency);
         }
-        [HttpGet]
+        
+        [HttpGet("{id}")]
         public ActionResult Get(Guid id)
         {
             return StatusCode(200,_repo.GetItem(id));
         }
-        [HttpDelete]
+
+        [HttpDelete("{id}")]
         public ActionResult Delete(Guid id)
         {
             _repo.Delete(id);

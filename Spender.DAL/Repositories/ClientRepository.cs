@@ -15,7 +15,7 @@ public class ClientRepository : IRepository<ClientViewModel>
     }
     public IEnumerable<ClientViewModel> GetItemList()
     {
-        return _dbcontext.Clients;
+        return _dbcontext.Clients.Select(c => c.Adapt<ClientViewModel>());
     }
     public ClientViewModel? GetItem(Guid id)
     {

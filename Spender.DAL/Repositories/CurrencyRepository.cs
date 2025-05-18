@@ -15,7 +15,7 @@ public class CurrencyRepository : IRepository<CurrencyViewModel>
     }
     public IEnumerable<CurrencyViewModel> GetItemList()
     {
-        return _dbcontext.Currencies;
+        return _dbcontext.Currencies.Select(c => c.Adapt<CurrencyViewModel>());
     }
     public CurrencyViewModel? GetItem(Guid id)
     {

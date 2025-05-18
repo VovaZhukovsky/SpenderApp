@@ -15,7 +15,7 @@ public class IncomeRepository : IRepository<IncomeViewModel>
     }
     public IEnumerable<IncomeViewModel> GetItemList()
     {
-        return _dbcontext.Incomes;
+        return _dbcontext.Incomes.Select(c => c.Adapt<IncomeViewModel>());
     }
     public IncomeViewModel? GetItem(Guid id)
     {

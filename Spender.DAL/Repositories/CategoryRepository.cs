@@ -15,7 +15,7 @@ public class CategoryRepository : IRepository<CategoryViewModel>
     }
     public IEnumerable<CategoryViewModel> GetItemList()
     {
-        return _dbcontext.Categories;
+        return _dbcontext.Categories.Select(c => c.Adapt<CategoryViewModel>());
     }
     public CategoryViewModel? GetItem(Guid id)
     {

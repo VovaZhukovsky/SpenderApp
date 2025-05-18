@@ -26,19 +26,25 @@ namespace Spender.Api.Controllers
             _repo.Save();
             return StatusCode(200,client);
         }
-        [HttpGet]
-        public ActionResult Get(Guid id)
+
+        [HttpGet("{id}")]
+        public ActionResult Get([FromRoute] Guid id)
         {
-            return StatusCode(200,_repo.GetItem(id));
+            return StatusCode(200, _repo.GetItem(id));
         }
-        [HttpDelete]
+        
+        [HttpGet("{mail}/mail")]
+        public ActionResult GetByMail([FromRoute] string mail)
+        {
+            return StatusCode(200, _repo.GetItemList().Where(c => c.Mail == mail).FirstOrDefault());
+        }
+
+        [HttpDelete("{id}")]
         public ActionResult Delete(Guid id)
         {
             _repo.Delete(id);
             _repo.Save();
             return StatusCode(201,null);
         }
-
-
     }
 }

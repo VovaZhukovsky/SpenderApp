@@ -15,7 +15,7 @@ public class ExpenseRepository : IRepository<ExpenseViewModel>
     }
     public IEnumerable<ExpenseViewModel> GetItemList()
     {
-        return _dbcontext.Expenses;
+        return _dbcontext.Expenses.Select(c => c.Adapt<ExpenseViewModel>());
     }
     public ExpenseViewModel? GetItem(Guid id)
     {

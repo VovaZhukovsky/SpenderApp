@@ -35,6 +35,11 @@ public class ApplicationContext: DbContext
             entity.Property(e => e.Amount)
                 .HasColumnType("money");
         });
+        modelBuilder.Entity<Client>(entity =>
+        {
+            entity.HasIndex(c => c.Mail)
+                .IsUnique();
+        });
     }
 
 
