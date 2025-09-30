@@ -16,16 +16,17 @@ Log.Logger = new LoggerConfiguration()
 try
 {
     Log.Information("Application started");
-    builder.Services.AddSingleton(Log.Logger);
-    builder.Services.AddScoped<MapsterConfig>();
-    builder.Services.AddScoped<IRepository<ClientViewModel>, ClientRepository>();   
-    builder.Services.AddScoped<IRepository<CurrencyViewModel>, CurrencyRepository>();
-    builder.Services.AddScoped<IRepository<CategoryViewModel>, CategoryRepository>();
-    builder.Services.AddScoped<IRepository<ExpenseViewModel>, ExpenseRepository>();
-    builder.Services.AddScoped<IRepository<IncomeViewModel>, IncomeRepository>();
-    builder.Services.AddDbContext<ApplicationContext>(options => options.UseNpgsql("Host=localhost;Port=5432;Database=spenderdb;Username=postgres;Password=12345",
-        providerOptions => providerOptions.EnableRetryOnFailure()), ServiceLifetime.Transient);
-    builder.Services.AddControllers();
+    builder.Services
+        .AddSingleton(Log.Logger)
+        .AddScoped<MapsterConfig>()
+        .AddScoped<IRepository<ClientViewModel>, ClientRepository>()
+        .AddScoped<IRepository<CurrencyViewModel>, CurrencyRepository>()
+        .AddScoped<IRepository<CategoryViewModel>, CategoryRepository>()
+        .AddScoped<IRepository<ExpenseViewModel>, ExpenseRepository>()
+        .AddScoped<IRepository<IncomeViewModel>, IncomeRepository>()
+        .AddDbContext<ApplicationContext>(options => options.UseNpgsql("Host=localhost;Port=5432;Database=spenderdb;Username=postgres;Password=12345",
+            providerOptions => providerOptions.EnableRetryOnFailure()), ServiceLifetime.Transient)
+        .AddControllers();
     builder.Services.AddSwaggerGen();
 
     var app = builder.Build();

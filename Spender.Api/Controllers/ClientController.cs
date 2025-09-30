@@ -22,9 +22,9 @@ namespace Spender.Api.Controllers
         [HttpPost]
         public ActionResult Create([FromBody] ClientViewModel client)
         {
-            _repo.Create(client);
+            var response = _repo.Create(client);
             _repo.Save();
-            return StatusCode(200,client);
+            return StatusCode(200,response);
         }
 
         [HttpGet("{id}")]

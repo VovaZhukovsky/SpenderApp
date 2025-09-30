@@ -13,7 +13,7 @@ namespace Spender.Api.Controllers
     [Route("[controller]")]
     public class CurrencyController : Controller
     {
-        private readonly IRepository<CurrencyViewModel> _repo;
+        private readonly IRepository<CurrencyViewModel>  _repo;
         public CurrencyController(IRepository<CurrencyViewModel> repo)
         {
             _repo = repo;
@@ -22,15 +22,20 @@ namespace Spender.Api.Controllers
         [HttpPost]
         public ActionResult Create([FromBody] CurrencyViewModel currency)
         {
-            _repo.Create(currency);
+            var response = _repo.Create(currency);
             _repo.Save();
-            return StatusCode(200,currency);
+            return StatusCode(200,response);
         }
         
         [HttpGet("{id}")]
         public ActionResult Get(Guid id)
         {
             return StatusCode(200,_repo.GetItem(id));
+        }
+        [HttpGet("{name}/name")]
+        public ActionResult Get(string name)
+        {
+            return StatusCode(200, _repo.GetItemList().Where(c => c.Name == name).FirstOrDefault());
         }
 
         [HttpDelete("{id}")]

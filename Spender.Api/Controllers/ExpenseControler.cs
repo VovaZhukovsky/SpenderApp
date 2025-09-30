@@ -22,9 +22,9 @@ namespace Spender.Api.Controllers
         [HttpPost]
         public ActionResult Create([FromBody] ExpenseViewModel expense)
         {
-            _repo.Create(expense);
+            var response = _repo.Create(expense);
             _repo.Save();
-            return StatusCode(200,expense);
+            return StatusCode(200,response);
         }
         
         [HttpGet("{id}")]
@@ -36,7 +36,7 @@ namespace Spender.Api.Controllers
         [HttpGet("{clientid}/client")]
         public ActionResult GetByClientId(Guid clientid)
         {
-            return StatusCode(200,_repo.GetItemList().Where(e => e.ClientId == clientid).FirstOrDefault());
+            return StatusCode(200,_repo.GetItemList().Where(e => e.ClientId == clientid));
         }
 
         [HttpDelete("{id}")]
