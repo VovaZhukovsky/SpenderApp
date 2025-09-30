@@ -40,8 +40,10 @@ public class ApplicationContext: DbContext
             entity.HasIndex(c => c.Mail)
                 .IsUnique();
         });
+        modelBuilder.Entity<Currency>(entity =>
+        {
+            entity.HasIndex(e => e.Name)
+                .IsUnique();
+        });
     }
-
-
-
 }

@@ -21,9 +21,9 @@ public class CategoryRepository : IRepository<CategoryViewModel>
     {
         return _dbcontext.Categories.Find(id).Adapt<CategoryViewModel>();
     }
-    public void Create(CategoryViewModel category)
+    public CategoryViewModel Create(CategoryViewModel category)
     {
-        _dbcontext.Categories.Add(category.Adapt<Category>());
+        return _dbcontext.Categories.Add(category.Adapt<Category>()).Entity.Adapt<CategoryViewModel>();
     }
     public void Update(CategoryViewModel category)
     {

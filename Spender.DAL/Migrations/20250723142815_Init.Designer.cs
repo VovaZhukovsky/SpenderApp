@@ -12,8 +12,8 @@ using Spender.DAL;
 namespace Spender.DAL.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20250511134252_Initial")]
-    partial class Initial
+    [Migration("20250723142815_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -37,6 +37,9 @@ namespace Spender.DAL.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<int>("TransactionType")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -65,6 +68,9 @@ namespace Spender.DAL.Migrations
 
                     b.HasIndex("CurrencyId");
 
+                    b.HasIndex("Mail")
+                        .IsUnique();
+
                     b.ToTable("Clients");
                 });
 
@@ -79,6 +85,9 @@ namespace Spender.DAL.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
 
                     b.ToTable("Currencies");
                 });

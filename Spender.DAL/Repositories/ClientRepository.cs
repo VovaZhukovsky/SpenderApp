@@ -21,9 +21,9 @@ public class ClientRepository : IRepository<ClientViewModel>
     {
         return _dbcontext.Clients.Find(id).Adapt<ClientViewModel>();
     }
-    public void Create(ClientViewModel client)
+    public ClientViewModel Create(ClientViewModel client)
     {
-        _dbcontext.Clients.Add(client.Adapt<Client>());
+        return _dbcontext.Clients.Add(client.Adapt<Client>()).Entity.Adapt<ClientViewModel>();
     }
     public void Update(ClientViewModel client)
     {

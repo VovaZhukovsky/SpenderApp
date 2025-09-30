@@ -21,9 +21,9 @@ public class CurrencyRepository : IRepository<CurrencyViewModel>
     {
         return _dbcontext.Currencies.Find(id).Adapt<CurrencyViewModel>();
     }
-    public void Create(CurrencyViewModel currency)
+    public CurrencyViewModel Create(CurrencyViewModel currency)
     {
-        _dbcontext.Currencies.Add(currency.Adapt<Currency>());
+        return _dbcontext.Currencies.Add(currency.Adapt<Currency>()).Entity.Adapt<CurrencyViewModel>();
     }
     public void Update(CurrencyViewModel currency)
     {

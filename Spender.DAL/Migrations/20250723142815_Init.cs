@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Spender.DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class Init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -49,7 +49,8 @@ namespace Spender.DAL.Migrations
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Name = table.Column<string>(type: "text", nullable: false),
-                    ClientId = table.Column<Guid>(type: "uuid", nullable: false)
+                    ClientId = table.Column<Guid>(type: "uuid", nullable: false),
+                    TransactionType = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -143,6 +144,18 @@ namespace Spender.DAL.Migrations
                 name: "IX_Clients_CurrencyId",
                 table: "Clients",
                 column: "CurrencyId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Clients_Mail",
+                table: "Clients",
+                column: "Mail",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Currencies_Name",
+                table: "Currencies",
+                column: "Name",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Expenses_CategoryId",

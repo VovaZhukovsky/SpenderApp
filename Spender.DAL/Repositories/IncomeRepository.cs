@@ -21,9 +21,9 @@ public class IncomeRepository : IRepository<IncomeViewModel>
     {
         return _dbcontext.Incomes.Find(id).Adapt<IncomeViewModel>();
     }
-    public void Create(IncomeViewModel income)
+    public IncomeViewModel Create(IncomeViewModel income)
     {
-        _dbcontext.Incomes.Add(income.Adapt<Income>());
+        return _dbcontext.Incomes.Add(income.Adapt<Income>()).Entity.Adapt<IncomeViewModel>();
     }
     public void Update(IncomeViewModel income)
     {

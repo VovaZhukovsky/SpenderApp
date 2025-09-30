@@ -83,6 +83,9 @@ namespace Spender.DAL.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Name")
+                        .IsUnique();
+
                     b.ToTable("Currencies");
                 });
 

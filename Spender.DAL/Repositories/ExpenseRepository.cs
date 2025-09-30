@@ -21,9 +21,9 @@ public class ExpenseRepository : IRepository<ExpenseViewModel>
     {
         return _dbcontext.Expenses.Find(id).Adapt<ExpenseViewModel>();
     }
-    public void Create(ExpenseViewModel expense)
+    public ExpenseViewModel Create(ExpenseViewModel expense)
     {
-        _dbcontext.Expenses.Add(expense.Adapt<Expense>());
+        return _dbcontext.Expenses.Add(expense.Adapt<Expense>()).Entity.Adapt<ExpenseViewModel>();
     }
     public void Update(ExpenseViewModel expense)
     {
